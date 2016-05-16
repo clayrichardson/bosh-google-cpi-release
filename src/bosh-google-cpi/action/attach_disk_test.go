@@ -43,7 +43,6 @@ var _ = Describe("AttachDisk", func() {
 			diskService.FindFound = true
 			diskService.FindDisk = disk.Disk{SelfLink: "fake-self-link"}
 			vmService.AttachDiskDeviceName = "fake-disk-device-name"
-			vmService.AttachDiskDevicePath = "fake-disk-device-path"
 			registryClient.FetchSettings = registry.AgentSettings{}
 			expectedAgentSettings = registry.AgentSettings{
 				Disks: registry.DisksSettings{
@@ -51,7 +50,6 @@ var _ = Describe("AttachDisk", func() {
 						"fake-disk-id": {
 							ID:       "fake-disk-id",
 							VolumeID: "fake-disk-device-name",
-							Path:     "fake-disk-device-path",
 						},
 					},
 				},

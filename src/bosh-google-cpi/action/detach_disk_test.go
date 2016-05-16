@@ -35,7 +35,6 @@ var _ = Describe("DetachDisk", func() {
 					"fake-disk-id": {
 						ID:       "fake-disk-id",
 						VolumeID: "fake-disk-device-name",
-						Path:     "fake-disk-device-path",
 					},
 				},
 			},

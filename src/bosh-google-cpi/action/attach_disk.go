@@ -39,7 +39,7 @@ func (ad AttachDisk) Run(vmCID VMCID, diskCID DiskCID) (interface{}, error) {
 	}
 
 	// Atach the Disk to the VM
-	deviceName, devicePath, err := ad.vmService.AttachDisk(string(vmCID), disk.SelfLink)
+	deviceName, err := ad.vmService.AttachDisk(string(vmCID), disk.SelfLink)
 	if err != nil {
 		if _, ok := err.(api.CloudError); ok {
 			return nil, err
@@ -54,7 +54,7 @@ func (ad AttachDisk) Run(vmCID VMCID, diskCID DiskCID) (interface{}, error) {
 	}
 
 	// Update VM agent settings
-	newAgentSettings := agentSettings.AttachPersistentDisk(string(diskCID), deviceName, devicePath)
+	newAgentSettings := agentSettings.AttachPersistentDisk(string(diskCID), deviceName)
 	if err = ad.registryClient.Update(string(vmCID), newAgentSettings); err != nil {
 		return nil, bosherr.WrapErrorf(err, "Attaching disk '%s' to vm '%s'", diskCID, vmCID)
 	}

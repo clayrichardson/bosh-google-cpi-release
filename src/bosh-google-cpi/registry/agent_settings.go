@@ -62,9 +62,6 @@ type PersistentSettings struct {
 
 	// Persistent disk volume ID
 	VolumeID string `json:"volume_id"`
-
-	// Persistent disk path
-	Path string `json:"path"`
 }
 
 // EnvSettings are the Environment settings for a particular VM.
@@ -134,7 +131,7 @@ func NewAgentSettings(agentID string, vmCID string, networksSettings NetworksSet
 }
 
 // AttachPersistentDisk updates the agent settings in order to add an attached persistent disk.
-func (as AgentSettings) AttachPersistentDisk(diskID string, volumeID string, path string) AgentSettings {
+func (as AgentSettings) AttachPersistentDisk(diskID string, volumeID string) AgentSettings {
 	persistenDiskSettings := make(map[string]PersistentSettings)
 	if as.Disks.Persistent != nil {
 		persistenDiskSettings = as.Disks.Persistent
@@ -142,7 +139,6 @@ func (as AgentSettings) AttachPersistentDisk(diskID string, volumeID string, pat
 	persistenDiskSettings[diskID] = PersistentSettings{
 		ID:       diskID,
 		VolumeID: volumeID,
-		Path:     path,
 	}
 	as.Disks.Persistent = persistenDiskSettings
 

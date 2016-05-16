@@ -7,7 +7,7 @@ import (
 type Service interface {
 	AddAccessConfig(id string, zone string, networkInterface string, accessConfig *compute.AccessConfig) error
 	AddNetworkConfiguration(id string, networks Networks) error
-	AttachDisk(id string, diskLink string) (string, string, error)
+	AttachDisk(id string, diskLink string) (string, error)
 	AttachedDisks(id string) (AttachedDisks, error)
 	CleanUp(id string)
 	Create(vmProps *Properties, networks Networks, registryEndpoint string) (string, error)

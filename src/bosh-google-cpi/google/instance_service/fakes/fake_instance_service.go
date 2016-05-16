@@ -15,7 +15,6 @@ type FakeInstanceService struct {
 	AttachDiskCalled     bool
 	AttachDiskErr        error
 	AttachDiskDeviceName string
-	AttachDiskDevicePath string
 
 	AttachedDisksCalled bool
 	AttachedDisksErr    error
@@ -71,9 +70,9 @@ func (i *FakeInstanceService) AddNetworkConfiguration(id string, networks instan
 	return i.AddNetworkConfigurationErr
 }
 
-func (i *FakeInstanceService) AttachDisk(id string, diskLink string) (string, string, error) {
+func (i *FakeInstanceService) AttachDisk(id string, diskLink string) (string, error) {
 	i.AttachDiskCalled = true
-	return i.AttachDiskDeviceName, i.AttachDiskDevicePath, i.AttachDiskErr
+	return i.AttachDiskDeviceName, i.AttachDiskErr
 }
 
 func (i *FakeInstanceService) AttachedDisks(id string) (instance.AttachedDisks, error) {
