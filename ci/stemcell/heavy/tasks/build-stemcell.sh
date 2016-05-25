@@ -57,6 +57,8 @@ chown -R ubuntu:ubuntu bosh-src
 sudo --preserve-env --set-home --user ubuntu -- /bin/bash --login -i <<SUDO
   pushd bosh-src
     echo "Installing gems..."
+    source /etc/profile.d/chruby.sh
+    chruby "ruby-2.1.7"
     bundle install --local
     echo "Creating stemcell..."
     CANDIDATE_BUILD_NUMBER=${build_number} bundle exec rake stemcell:build[google,kvm,${os_name},${os_version},go,${os_image_bucket},${os_image_file}]

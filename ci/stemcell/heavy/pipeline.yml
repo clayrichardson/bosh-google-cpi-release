@@ -20,7 +20,7 @@ jobs:
         privileged: true
         config:
           params:
-            build_number:    3218
+            build_number:    3215
             os_name:         ubuntu
             os_version:      trusty
             os_image_bucket: bosh-os-images
@@ -47,7 +47,7 @@ resources:
     type: git
     source:
       uri: https://github.com/cloudfoundry-incubator/bosh-google-cpi-release.git
-      branch: master
+      branch: heavy-stemcells
 
   - name: bosh-src
     type: git
@@ -77,7 +77,7 @@ resources:
       regexp:   light-bosh-stemcell-([0-9\.]+)-google-kvm-ubuntu-trusty-go_agent.tgz
 
 resource_types:
-  - name: gcs-request
+  - name: gcs-resource
     type: docker-image
     source:
       repository: frodenas/gcs-resource
