@@ -67,9 +67,9 @@ gcloud compute url-maps create concourse-http --default-service concourse
 ```
 
 1. Create a target proxy:
-
+```
 gcloud compute target-http-proxies create concourse-http --url-map concourse-http
-
+```
 1. Create a global forwarding rule
 
 ```
